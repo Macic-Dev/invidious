@@ -110,6 +110,27 @@ module Invidious::Routes::PreferencesRoute
     automatic_instance_redirect ||= "off"
     automatic_instance_redirect = automatic_instance_redirect == "on"
 
+    twitter_privacy_redirect = env.params.body["twitter_privacy_redirect"]?.try &.as(String)
+    twitter_privacy_redirect ||= "off"
+    twitter_privacy_redirect = twitter_privacy_redirect == "on"
+
+    instagram_privacy_redirect = env.params.body["instagram_privacy_redirect"]?.try &.as(String)
+    instagram_privacy_redirect ||= "off"
+    instagram_privacy_redirect = instagram_privacy_redirect == "on"
+
+    reddit_privacy_redirect = env.params.body["reddit_privacy_redirect"]?.try &.as(String)
+    reddit_privacy_redirect ||= "off"
+    reddit_privacy_redirect = reddit_privacy_redirect == "on"
+
+    twitter_privacy_redirect_url = env.params.body["twitter_privacy_redirect_url"]?.try &.as(String)
+    twitter_privacy_redirect_url ||= CONFIG.default_user_preferences.twitter_privacy_redirect_url
+
+    instagram_privacy_redirect_url = env.params.body["instagram_privacy_redirect_url"]?.try &.as(String)
+    instagram_privacy_redirect_url ||= CONFIG.default_user_preferences.instagram_privacy_redirect_url
+
+    reddit_privacy_redirect_url = env.params.body["reddit_privacy_redirect_url"]?.try &.as(String)
+    reddit_privacy_redirect_url ||= CONFIG.default_user_preferences.reddit_privacy_redirect_url
+
     region = env.params.body["region"]?.try &.as(String)
 
     locale = env.params.body["locale"]?.try &.as(String)
@@ -142,39 +163,45 @@ module Invidious::Routes::PreferencesRoute
 
     # Convert to JSON and back again to take advantage of converters used for compatibility
     preferences = Preferences.from_json({
-      annotations:                 annotations,
-      annotations_subscribed:      annotations_subscribed,
-      autoplay:                    autoplay,
-      captions:                    captions,
-      comments:                    comments,
-      continue:                    continue,
-      continue_autoplay:           continue_autoplay,
-      dark_mode:                   dark_mode,
-      latest_only:                 latest_only,
-      listen:                      listen,
-      local:                       local,
-      watch_history:               watch_history,
-      locale:                      locale,
-      max_results:                 max_results,
-      notifications_only:          notifications_only,
-      player_style:                player_style,
-      quality:                     quality,
-      quality_dash:                quality_dash,
-      default_home:                default_home,
-      feed_menu:                   feed_menu,
-      automatic_instance_redirect: automatic_instance_redirect,
-      region:                      region,
-      related_videos:              related_videos,
-      sort:                        sort,
-      speed:                       speed,
-      thin_mode:                   thin_mode,
-      unseen_only:                 unseen_only,
-      video_loop:                  video_loop,
-      volume:                      volume,
-      extend_desc:                 extend_desc,
-      vr_mode:                     vr_mode,
-      show_nick:                   show_nick,
-      save_player_pos:             save_player_pos,
+      annotations:                    annotations,
+      annotations_subscribed:         annotations_subscribed,
+      autoplay:                       autoplay,
+      captions:                       captions,
+      comments:                       comments,
+      continue:                       continue,
+      continue_autoplay:              continue_autoplay,
+      dark_mode:                      dark_mode,
+      latest_only:                    latest_only,
+      listen:                         listen,
+      local:                          local,
+      watch_history:                  watch_history,
+      locale:                         locale,
+      max_results:                    max_results,
+      notifications_only:             notifications_only,
+      player_style:                   player_style,
+      quality:                        quality,
+      quality_dash:                   quality_dash,
+      default_home:                   default_home,
+      feed_menu:                      feed_menu,
+      automatic_instance_redirect:    automatic_instance_redirect,
+      twitter_privacy_redirect:       twitter_privacy_redirect,
+      twitter_privacy_redirect_url:   twitter_privacy_redirect_url,
+      instagram_privacy_redirect:     instagram_privacy_redirect,
+      instagram_privacy_redirect_url: instagram_privacy_redirect_url,
+      reddit_privacy_redirect:        reddit_privacy_redirect,
+      reddit_privacy_redirect_url:    reddit_privacy_redirect_url,
+      region:                         region,
+      related_videos:                 related_videos,
+      sort:                           sort,
+      speed:                          speed,
+      thin_mode:                      thin_mode,
+      unseen_only:                    unseen_only,
+      video_loop:                     video_loop,
+      volume:                         volume,
+      extend_desc:                    extend_desc,
+      vr_mode:                        vr_mode,
+      show_nick:                      show_nick,
+      save_player_pos:                save_player_pos,
     }.to_json)
 
     if user = env.get? "user"
