@@ -203,6 +203,38 @@
                 <input name="automatic_instance_redirect" id="automatic_instance_redirect" type="checkbox" <% if preferences.automatic_instance_redirect %>checked<% end %>>
             </div>
 
+            <legend><%= translate(locale, "preferences_category_redirects") %></legend>
+
+            <div class="pure-control-group">
+                <label for="twitter_privacy_redirect"><%= translate(locale, "preferences_twitter_privacy_redirect_label") %></label>
+                <input name="twitter_privacy_redirect" id="twitter_privacy_redirect" type="checkbox" <% if preferences.twitter_privacy_redirect %>checked<% end %>>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="twitter_privacy_redirect_url"><%= translate(locale, "preferences_twitter_privacy_redirect_label_url") %></label>
+                <input name="twitter_privacy_redirect_url" id="twitter_privacy_redirect_url" type="url" value="<%= preferences.twitter_privacy_redirect_url %>" >
+            </div>
+            
+            <div class="pure-control-group">
+                <label for="instagram_privacy_redirect"><%= translate(locale, "preferences_instagram_privacy_redirect_label") %></label>
+                <input name="instagram_privacy_redirect" id="instagram_privacy_redirect" type="checkbox" <% if preferences.instagram_privacy_redirect %>checked<% end %>>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="instagram_privacy_redirect_url"><%= translate(locale, "preferences_instagram_privacy_redirect_label_url") %></label>
+                <input name="instagram_privacy_redirect_url" id="instagram_privacy_redirect_url" type="url" value="<%= preferences.instagram_privacy_redirect_url %>" >
+            </div>
+
+            <div class="pure-control-group">
+                <label for="reddit_privacy_redirect"><%= translate(locale, "preferences_reddit_privacy_redirect_label") %></label>
+                <input name="reddit_privacy_redirect" id="reddit_privacy_redirect" type="checkbox" <% if preferences.reddit_privacy_redirect %>checked<% end %>>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="reddit_privacy_redirect_url"><%= translate(locale, "preferences_reddit_privacy_redirect_label_url") %></label>
+                <input name="reddit_privacy_redirect_url" id="reddit_privacy_redirect_url" type="url" value="<%= preferences.reddit_privacy_redirect_url %>" >
+            </div>
+
             <% if env.get? "user" %>
                 <legend><%= translate(locale, "preferences_category_subscription") %></legend>
 

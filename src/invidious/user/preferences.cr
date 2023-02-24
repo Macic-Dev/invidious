@@ -6,6 +6,12 @@ struct Preferences
   property annotations_subscribed : Bool = CONFIG.default_user_preferences.annotations_subscribed
   property autoplay : Bool = CONFIG.default_user_preferences.autoplay
   property automatic_instance_redirect : Bool = CONFIG.default_user_preferences.automatic_instance_redirect
+  property twitter_privacy_redirect : Bool = CONFIG.default_user_preferences.twitter_privacy_redirect
+  property twitter_privacy_redirect_url : String = CONFIG.default_user_preferences.twitter_privacy_redirect_url
+  property instagram_privacy_redirect : Bool = CONFIG.default_user_preferences.instagram_privacy_redirect
+  property instagram_privacy_redirect_url : String = CONFIG.default_user_preferences.instagram_privacy_redirect_url
+  property reddit_privacy_redirect : Bool = CONFIG.default_user_preferences.reddit_privacy_redirect
+  property reddit_privacy_redirect_url : String = CONFIG.default_user_preferences.reddit_privacy_redirect_url
 
   @[JSON::Field(converter: Preferences::StringToArray)]
   @[YAML::Field(converter: Preferences::StringToArray)]
