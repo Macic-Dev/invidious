@@ -233,3 +233,17 @@ def proxy_file(response, env)
     IO.copy response.body_io, env.response
   end
 end
+
+def replace_frontends(env, content)
+  preferences = env.get("preferences").as(Preferences)
+  if preferences.twitter_privacy_redirect_url
+    content = content.gsub(/https?:\/\/(www\.)?twitter\.com/, preferences.twitter_privacy_redirect_url)
+  end
+  if preferences.instagram_privacy_redirect_url
+    content = content.gsub(/https?:\/\/(www\.)?instagram\.com/, preferences.instagram_privacy_redirect_url)
+  end
+  if preferences.reddit_privacy_redirect_url
+    content = content.gsub(/https?:\/\/(([^.]+)\.)?reddit\.com/, preferences.reddit_privacy_redirect_url)
+  end
+  return content
+end
