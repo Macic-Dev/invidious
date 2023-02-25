@@ -639,7 +639,7 @@ def content_to_comment_html(content, video_id : String? = "")
           end
         end
 
-        text = %(<a href="#{url}">#{reduce_uri(displayed_url)}</a>)
+        text = %(<a href="#{url}">#{displayed_url}</a>)
       elsif watch_endpoint = run["navigationEndpoint"]["watchEndpoint"]?
         start_time = watch_endpoint["startTimeSeconds"]?.try &.as_i
         link_video_id = watch_endpoint["videoId"].as_s
